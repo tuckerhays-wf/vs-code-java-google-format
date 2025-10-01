@@ -5,13 +5,15 @@ A VS Code extension that formats Java files using the official [google-java-form
 ## Quick Start
 
 1. **Install the extension**:
-  Check out the repo
-  `pnpm i`
-  `make install-cursor` or `make install-vs`
+ - Check out the repo
+ - `pnpm i`
+ - `make install-cursor` or `make install-vs`
 
-2. **Download google-java-format JAR**: Get the latest `all-deps.jar` from [releases](https://github.com/google/google-java-format/releases)
+2. **Download google-java-format JAR**: 
+ - Get the latest `all-deps.jar` from [releases](https://github.com/google/google-java-format/releases)
 
-3. **Configure VS Code**: Add to your settings (⌘, or Ctrl+,):
+3. **Configure VS Code**: 
+ - Add to your settings (⌘, or Ctrl+,):
    ```json
    {
      "googleJavaFormatter.jarPath": "/path/to/google-java-format-1.28.0-all-deps.jar",
