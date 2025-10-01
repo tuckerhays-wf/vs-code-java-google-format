@@ -1,11 +1,29 @@
+# Source files
+src/**
+tsconfig.json
 .vscode/**
 .vscode-test/**
-src/**
+
+# Build files
+*.vsix
+.eslintrc.json
+eslint.config.mjs
+
+# Git
+.git
 .gitignore
-.yarnrc
+
+# Dependencies
+node_modules/**
+pnpm-lock.yaml
+
+# Documentation
 vsc-extension-quickstart.md
-**/tsconfig.json
-**/eslint.config.mjs
-**/*.map
-**/*.ts
-**/.vscode-test.*
+CHANGELOG.md
+
+# Test files
+test-files/**
+
+# Misc
+.DS_Store
+Makefile
