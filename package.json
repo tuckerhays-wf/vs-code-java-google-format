@@ -3,7 +3,7 @@
   "displayName": "Google Java Formatter",
   "description": "Formats Java files using the official google-java-format tool.",
   "version": "0.0.1",
-  "publisher": "your-publisher-name",
+  "publisher": "tuckerhays-wf",
   "engines": {
     "vscode": "^1.80.0"
   },

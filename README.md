@@ -1,71 +1,115 @@
-# java-google-formatter README
+# Google Java Formatter
 
-This is the README for your extension "java-google-formatter". After writing up a brief description, we recommend including the following sections.
+A VS Code extension that formats Java files using the official [google-java-format](https://github.com/google/google-java-format) tool.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- Formats Java code using google-java-format
+- Integrates with VS Code's built-in formatting commands
+- Use any version of google-java-format by pointing to a local JAR file
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- **Java Runtime**: Java must be installed and available in your PATH
+- **google-java-format JAR**: Download from [GitHub releases](https://github.com/google/google-java-format/releases)
 
-## Extension Settings
+## Installation & Setup
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+1. Install the extension
+2. Download the google-java-format JAR file (e.g., `google-java-format-1.28.0-all-deps.jar`)
+3. Configure the JAR path in your VS Code settings:
 
-For example:
+```json
+{
+  "googleJavaFormatter.jarPath": "/path/to/google-java-format-1.28.0-all-deps.jar"
+}
+```
 
-This extension contributes the following settings:
+### Set as Default Java Formatter
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+If you have multiple Java formatters installed, set this as your default:
 
-## Known Issues
+```json
+{
+  "[java]": {
+    "editor.defaultFormatter": "your-publisher-name.google-java-formatter"
+  }
+}
+```
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Or use the VS Code UI: Open a Java file → `Shift+Option+F` (macOS) or `Shift+Alt+F` (Windows/Linux) → Select "Google Java Formatter" when prompted.
 
-## Release Notes
+## Usage
 
-Users appreciate release notes as you update your extension.
+Format your Java files using any of these methods:
 
-### 1.0.0
+- **Format Document**: `Shift+Alt+F` (Windows/Linux) or `Shift+Option+F` (macOS)
+- **Right-click** → `Format Document`
+- **Command Palette** → `Format Document`
 
-Initial release of ...
+## Settings
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+| Setting | Type | Description |
+|---------|------|-------------|
+| `googleJavaFormatter.jarPath` | string | Path to the google-java-format JAR file |
 
 ---
 
-## Following extension guidelines
+## Development
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+### Prerequisites
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+- Node.js and npm (or pnpm)
+- TypeScript
 
-## Working with Markdown
+### Setup
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+```bash
+# Install dependencies
+npm install
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+# Compile TypeScript
+npm run compile
 
-## For more information
+# Watch mode (auto-compile on changes)
+npm run watch
+```
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+### Running & Debugging
 
-**Enjoy!**
+1. **Compile the extension**:
+   ```bash
+   npm run compile
+   ```
+
+2. **Press F5** in VS Code to launch the Extension Development Host
+
+3. **In the new window**, open or create a `.java` file
+   - The extension only activates when a Java file is opened
+   - Check the Debug Console for the activation message
+
+4. **Configure the JAR path** in the Extension Development Host window's settings
+
+5. **Test formatting** on a Java file using `Shift+Option+F` (macOS) or `Shift+Alt+F` (Windows/Linux)
+
+### Project Structure
+
+```
+├── src/
+│   ├── extension.ts      # Extension entry point
+│   ├── formatter.ts      # Formatter logic
+│   └── test/             # Tests
+├── out/                  # Compiled JavaScript (generated)
+├── test-files/           # Sample Java files for testing
+└── package.json          # Extension manifest
+```
+
+### Key Files
+
+- **`src/extension.ts`**: Registers the document formatting provider
+- **`src/formatter.ts`**: Spawns the Java process and handles formatting
+- **`package.json`**: Defines the extension configuration and activation events
+
+### Activation Event
+
+The extension activates on `onLanguage:java`, meaning it only loads when a Java file is opened. This keeps VS Code startup fast.
