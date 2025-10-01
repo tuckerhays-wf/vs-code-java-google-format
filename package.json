@@ -1,0 +1,40 @@
+{
+  "name": "google-java-formatter",
+  "displayName": "Google Java Formatter",
+  "description": "Formats Java files using the official google-java-format tool.",
+  "version": "0.0.1",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "activationEvents": [
+    "onLanguage:java"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Google Java Formatter",
+      "properties": {
+        "googleJavaFormatter.jarPath": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Path to the google-java-format JAR file. Download from [GitHub releases](https://github.com/google/google-java-format/releases).",
+          "scope": "machine-overridable"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "20.x",
+    "typescript": "^5.0.0"
+  }
+}
